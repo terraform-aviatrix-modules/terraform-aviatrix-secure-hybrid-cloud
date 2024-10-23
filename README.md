@@ -14,11 +14,11 @@ The following depicts the topology deployed.
 
 #### VGW
 
-<img src="https://github.com/terraform-aviatrix-modules/terraform-aviatrix-secure-hybrid-cloud/blob/main/img/vgw.png?raw=true" height="250">
+<img src="https://github.com/terraform-aviatrix-modules/terraform-aviatrix-secure-hybrid-cloud/blob/main/img/vgw.png?raw=true" height="500">
 
 #### TGW
 
-<img src="https://github.com/terraform-aviatrix-modules/terraform-aviatrix-secure-hybrid-cloud/blob/main/img/tgw.png?raw=true" height="250">
+<img src="https://github.com/terraform-aviatrix-modules/terraform-aviatrix-secure-hybrid-cloud/blob/main/img/tgw.png?raw=true" height="500">
 
 ### Compatibility
 
@@ -131,4 +131,4 @@ The following CSP accounts are required.
 
 Each gatus dashboard for a particular cloud depicts the real-time connectivity to the other 2 clouds. For example, the `Azure` dashboard would depict connectivity to `AWS` and `Edge`.
 
-<img src="https://github.com/terraform-aviatrix-modules/terraform-aviatrix-secure-hybrid-cloud/blob/main/img/gatus.png?raw=true" height="250">
+<img src="https://github.com/terraform-aviatrix-modules/terraform-aviatrix-secure-hybrid-cloud/blob/main/img/gatus.png?raw=true" height="500">
