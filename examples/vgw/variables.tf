@@ -25,26 +25,6 @@ variable "controller_address" {
   description = "URL or ip of the aviatrix controller"
 }
 
-variable "azure_subscription_id" {
-  type        = string
-  description = "Azure subscription id"
-}
-
-variable "azure_application_id" {
-  type        = string
-  description = "Azure application id"
-}
-
-variable "azure_application_key" {
-  type        = string
-  description = "Azure application key"
-}
-
-variable "azure_directory_id" {
-  type        = string
-  description = "Azure directory id"
-}
-
 variable "gcp_project" {
   type        = string
   description = "Gcp Project"

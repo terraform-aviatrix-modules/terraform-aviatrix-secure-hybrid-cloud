@@ -5,7 +5,7 @@ provider "aviatrix" {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
 }
 
 provider "azurerm" {
@@ -15,5 +15,5 @@ provider "azurerm" {
 
 provider "google" {
   project = var.gcp_project
-  region  = "us-west2"
+  region  = var.gcp_region
 }
