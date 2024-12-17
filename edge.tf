@@ -1,11 +1,12 @@
 module "edge" {
   source              = "terraform-aviatrix-modules/gcp-edge-demo/aviatrix"
-  version             = "3.2.0"
+  version             = "3.2.1"
   region              = var.gcp_region
   pov_prefix          = "aviatrix"
   host_vm_size        = var.instance_sizes["edge"]
   test_vm_size        = var.instance_sizes["gcp"]
   host_vm_cidr        = "10.40.251.16/28"
+  enable_hpe_spoke    = var.enable_hpe
   host_vm_asn         = 64900
   host_vm_count       = 1
   edge_vm_asn         = 64581

@@ -24,7 +24,7 @@ The following depicts the topology deployed.
 
 | Module version | Terraform version | Controller version | Terraform provider version |
 | :------------- | :---------------- | :----------------- | :------------------------- |
-| v1.0.0         | >= 1.5.0          | >= 7.1             | ~>3.1.0                    |
+| v1.1.0         | >= 1.5.0          | >= 7.2             | ~>3.2.0                    |
 
 ## Usage Example
 
@@ -35,7 +35,7 @@ data "http" "myip" {
 
 module "avx_hybrid_cloud" {
   source              = "terraform-aviatrix-modules/secure-hybrid-cloud/aviatrix"
-  version             = "1.0.0"
+  version             = "1.1.0"
   avx_aws_account     = var.avx_aws_account
   avx_azure_account   = var.avx_azure_account
   password            = var.controller_password
@@ -122,6 +122,7 @@ The following CSP accounts are required.
 | :----------------- | :------------- | :------------------------------------ |
 | v7.1.x             | u18            | avx-edge-kvm-7.1-2023-04-24.qcow2     |
 | v7.1.x             | u22            | avx-gateway-avx-g3-202405121500.qcow2 |
+| v7.2.x             | u22            | avx-gateway-avx-g3-202409102334.qcow2 |
 
 ### Terraform
 

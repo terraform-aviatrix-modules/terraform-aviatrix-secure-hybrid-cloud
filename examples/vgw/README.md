@@ -9,7 +9,7 @@ data "http" "myip" {
 
 module "avx_hybrid_cloud" {
   source              = "terraform-aviatrix-modules/secure-hybrid-cloud/aviatrix"
-  version             = "1.0.0"
+  version             = "1.1.0"
   avx_aws_account     = var.avx_aws_account
   avx_azure_account   = var.avx_azure_account
   password            = var.controller_password

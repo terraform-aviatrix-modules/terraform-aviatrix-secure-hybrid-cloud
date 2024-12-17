@@ -116,3 +116,8 @@ variable "vgw_or_tgw" {
     error_message = "Invalid AWS gateway option. Choose vgw or tgw."
   }
 }
+
+variable "enable_hpe" {
+  description = "Enable high performance encryption on the edge to transit attachment"
+  default     = true
+}
