@@ -81,9 +81,17 @@ resource "aws_ec2_transit_gateway_route_table_propagation" "this_2" {
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.this.id
 }
 
+data "aws_route_table" "this_transit" {
+  filter {
+    name   = "tag:Name"
+    values = ["aviatrix-transit-aws"]
+  }
+  depends_on = [aws_ec2_transit_gateway_connect_peer.this]
+}
+
 resource "aws_route" "this" {
-  count                  = 2
-  route_table_id         = var.transit_vpc.route_tables[count.index]
+  # count                  = 3
+  route_table_id         = data.aws_route_table.this_transit.id
   destination_cidr_block = "192.168.101.0/24"
   transit_gateway_id     = aws_ec2_transit_gateway.this.id
 }

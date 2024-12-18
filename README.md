@@ -24,7 +24,7 @@ The following depicts the topology deployed.
 
 | Module version | Terraform version | Controller version | Terraform provider version |
 | :------------- | :---------------- | :----------------- | :------------------------- |
-| v1.0.0         | >= 1.5.0          | >= 7.1             | ~>3.1.0                    |
+| v1.1.0         | >= 1.5.0          | >= 7.2             | ~>3.2.0                    |
 
 ## Usage Example
 
@@ -35,13 +35,14 @@ data "http" "myip" {
 
 module "avx_hybrid_cloud" {
   source              = "terraform-aviatrix-modules/secure-hybrid-cloud/aviatrix"
-  version             = "1.0.0"
+  version             = "1.1.0"
   avx_aws_account     = var.avx_aws_account
   avx_azure_account   = var.avx_azure_account
   password            = var.controller_password
   my_ip               = "${chomp(data.http.myip.response_body)}/32"
   vgw_or_tgw          = "vgw"
-  edge_image_filename = "${path.module}/avx-gateway-avx-g3-202405121500.qcow2"
+  enable_hpe          = true
+  edge_image_filename = "${path.module}/avx-gateway-avx-g3-202409102334.qcow2"
 }
 
 output "gatus_dashboard_urls" {
@@ -73,20 +74,21 @@ See [example terraform](examples). You may need to modify the csp providers to m
 
 ### Optional
 
-| Key                 |                                                                                       Default value | Description                                     |
-| :------------------ | --------------------------------------------------------------------------------------------------: | :---------------------------------------------- |
-| aws_region          |                                                                                           us-east-1 | Aws region - must match provider region         |
-| azure_region        |                                                                                          Central US | Azure region                                    |
-| gcp_region          |                                                                                            us-west2 | Gcp region - must match provider region         |
-| instance_sizes      | aws = "t3.micro"<br>gcp = "n1-standard-1"<br>azure = "Standard_B1ms"<br>edge = "n1-standard-2"</br> | Instance sizes for each cloud provider          |
-| gatus_private_ips   |                                   aws = "10.1.2.40"<br>edge = "10.40.251.29"<br>azure = "10.2.2.40" | Private ips for the gatus instances             |
-| edge_instance_name  |                                                                                       edge-instance | Name of the edge gatus instance                 |
-| aws_instance_name   |                                                                                        aws-instance | Name of the aws gatus instance                  |
-| azure_instance_name |                                                                                      azure-instance | Name of the azure gatus instance                |
-| gatus_interval      |                                                                                                   5 | Interval for gatus polling (in seconds)         |
-| inbound_tcp         |                                                                                  80 = ["0.0.0.0/0"] | Inbound tcp ports for gatus instances           |
-| quagga_asn          |                                                                                               65516 | Quagga asn                                      |
-| vgw_or_tgw          |                                                                                                 vgw | Aws connectivity via aws transit or vpn gateway |
+| Key                 |                                                                                       Default value | Description                                                          |
+| :------------------ | --------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------- |
+| aws_region          |                                                                                           us-east-1 | Aws region - must match provider region                              |
+| azure_region        |                                                                                          Central US | Azure region                                                         |
+| gcp_region          |                                                                                            us-west2 | Gcp region - must match provider region                              |
+| instance_sizes      | aws = "t3.micro"<br>gcp = "n1-standard-1"<br>azure = "Standard_B1ms"<br>edge = "n1-standard-2"</br> | Instance sizes for each cloud provider                               |
+| gatus_private_ips   |                                   aws = "10.1.2.40"<br>edge = "10.40.251.29"<br>azure = "10.2.2.40" | Private ips for the gatus instances                                  |
+| edge_instance_name  |                                                                                       edge-instance | Name of the edge gatus instance                                      |
+| enable_hpe          |                                                                                                true | High performance encryption for edge attachments and transit peering |
+| aws_instance_name   |                                                                                        aws-instance | Name of the aws gatus instance                                       |
+| azure_instance_name |                                                                                      azure-instance | Name of the azure gatus instance                                     |
+| gatus_interval      |                                                                                                   5 | Interval for gatus polling (in seconds)                              |
+| inbound_tcp         |                                                                                  80 = ["0.0.0.0/0"] | Inbound tcp ports for gatus instances                                |
+| quagga_asn          |                                                                                               65516 | Quagga asn                                                           |
+| vgw_or_tgw          |                                                                                                 vgw | Aws connectivity via aws transit or vpn gateway                      |
 
 ## Outputs
 
@@ -122,6 +124,7 @@ The following CSP accounts are required.
 | :----------------- | :------------- | :------------------------------------ |
 | v7.1.x             | u18            | avx-edge-kvm-7.1-2023-04-24.qcow2     |
 | v7.1.x             | u22            | avx-gateway-avx-g3-202405121500.qcow2 |
+| v7.2.x             | u22            | avx-gateway-avx-g3-202409102334.qcow2 |
 
 ### Terraform
 

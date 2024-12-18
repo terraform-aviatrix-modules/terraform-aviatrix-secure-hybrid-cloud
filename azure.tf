@@ -19,7 +19,7 @@ resource "azurerm_route_table" "spoke_azure_private" {
 
 module "spoke_azure" {
   source              = "Azure/vnet/azurerm"
-  version             = "4.1.0"
+  version             = "5.0.1"
   vnet_name           = "spoke-azure"
   resource_group_name = azurerm_resource_group.spoke_azure.name
   vnet_location       = azurerm_resource_group.spoke_azure.location
@@ -240,13 +240,12 @@ resource "azurerm_linux_virtual_machine" "nva" {
   admin_password        = var.password
   computer_name         = "nva"
   size                  = "Standard_B1ls"
-  # custom_data                     = data.cloudinit_config.nva.rendered
   custom_data = base64encode(templatefile("${path.module}/templates/quagga.tpl",
     {
       asn_quagga      = var.quagga_asn
       bgp_routerId    = azurerm_network_interface.nva.ip_configuration[0].private_ip_address
-      bgp_network1    = module.spoke_azure.vnet_address_space[0]
-      bgp_network2    = azurerm_virtual_network.ars.address_space[0]
+      bgp_network1    = tolist(module.spoke_azure.vnet_address_space)[0]
+      bgp_network2    = tolist(azurerm_virtual_network.ars.address_space)[0]
       routeserver_IP1 = tolist(azurerm_route_server.default.virtual_router_ips)[0]
       routeserver_IP2 = tolist(azurerm_route_server.default.virtual_router_ips)[1]
   }))

@@ -8,6 +8,7 @@ locals {
       transit_region_name = var.aws_region
       transit_asn         = 65101
       transit_ha_gw       = true
+      transit_insane_mode = true
     },
     azure = {
       transit_name                        = "transit-azure"
