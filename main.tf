@@ -2,8 +2,8 @@ module "backbone" {
   source          = "terraform-aviatrix-modules/backbone/aviatrix"
   version         = "v1.3.1"
   transit_firenet = local.backbone
-  peering_mode    = "custom"
-  peering_map = {
+  peering_mode    = var.transit_peering ? "custom" : "none"
+  peering_map = var.transit_peering ? {
     peering1 : {
       gw1_name                                    = module.backbone.transit["aws"].transit_gateway.gw_name,
       gw2_name                                    = module.backbone.transit["azure"].transit_gateway.gw_name,
@@ -13,5 +13,5 @@ module "backbone" {
       gateway2_excluded_network_cidrs             = ["0.0.0.0/0"],
       tunnel_count                                = var.enable_hpe ? 2 : null
     }
-  }
+  } : null
 }
