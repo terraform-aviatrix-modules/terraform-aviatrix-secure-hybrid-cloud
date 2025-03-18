@@ -24,7 +24,7 @@ The following depicts the topology deployed.
 
 | Module version | Terraform version | Controller version | Terraform provider version |
 | :------------- | :---------------- | :----------------- | :------------------------- |
-| v1.1.0         | >= 1.5.0          | >= 7.2             | ~>3.2.0                    |
+| v1.2.0         | >= 1.5.0          | >= 7.2             | ~>3.2.0                    |
 
 ## Usage Example
 
@@ -82,12 +82,14 @@ See [example terraform](examples). You may need to modify the csp providers to m
 | instance_sizes      | aws = "t3.micro"<br>gcp = "n1-standard-1"<br>azure = "Standard_B1ms"<br>edge = "n1-standard-2"</br> | Instance sizes for each cloud provider                               |
 | gatus_private_ips   |                                   aws = "10.1.2.40"<br>edge = "10.40.251.29"<br>azure = "10.2.2.40" | Private ips for the gatus instances                                  |
 | edge_instance_name  |                                                                                       edge-instance | Name of the edge gatus instance                                      |
+| edge_attachement    |                                                                                                true | Attach edge to transit gateways                                      |
 | enable_hpe          |                                                                                                true | High performance encryption for edge attachments and transit peering |
 | aws_instance_name   |                                                                                        aws-instance | Name of the aws gatus instance                                       |
 | azure_instance_name |                                                                                      azure-instance | Name of the azure gatus instance                                     |
 | gatus_interval      |                                                                                                   5 | Interval for gatus polling (in seconds)                              |
 | inbound_tcp         |                                                                                  80 = ["0.0.0.0/0"] | Inbound tcp ports for gatus instances                                |
 | quagga_asn          |                                                                                               65516 | Quagga asn                                                           |
+| transit_peering     |                                                                                                true | Peer the transit gateways                                            |
 | vgw_or_tgw          |                                                                                                 vgw | Aws connectivity via aws transit or vpn gateway                      |
 
 ## Outputs

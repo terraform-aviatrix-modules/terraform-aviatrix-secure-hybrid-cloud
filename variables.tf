@@ -95,6 +95,12 @@ variable "my_ip" {
   description = "Source ip for the deploying user"
 }
 
+variable "edge_attachment" {
+  type        = bool
+  description = "Attach edge to the transits"
+  default     = true
+}
+
 variable "edge_image_filename" {
   type        = string
   description = "Full file path to the edge qcow"
@@ -106,6 +112,13 @@ variable "edge_image_location" {
   description = "Full file path to the edge qcow hosted in a gcp bucket"
   default     = null
 }
+
+variable "transit_peering" {
+  type        = bool
+  description = "Peer transit gateways"
+  default     = true
+}
+
 
 variable "vgw_or_tgw" {
   type        = string

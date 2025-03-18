@@ -24,10 +24,10 @@ module "edge" {
     password = var.password
   })
   external_cidrs = []
-  transit_gateways = [
+  transit_gateways = var.edge_attachment ? [
     module.backbone.transit["aws"].transit_gateway.gw_name,
     module.backbone.transit["azure"].transit_gateway.gw_name,
-  ]
+  ] : []
 }
 
 resource "google_compute_firewall" "rfc1918_ingress" {
