@@ -1,6 +1,6 @@
 module "backbone" {
   source          = "terraform-aviatrix-modules/backbone/aviatrix"
-  version         = "v1.3.1"
+  version         = "8.0.0"
   transit_firenet = local.backbone
   peering_mode    = var.transit_peering ? "custom" : "none"
   peering_map = var.transit_peering ? {
