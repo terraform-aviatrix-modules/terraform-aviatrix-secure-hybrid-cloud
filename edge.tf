@@ -1,6 +1,6 @@
 module "edge" {
   source              = "terraform-aviatrix-modules/gcp-edge-demo/aviatrix"
-  version             = "3.2.1"
+  version             = "3.2.3"
   region              = var.gcp_region
   pov_prefix          = "aviatrix"
   host_vm_size        = var.instance_sizes["edge"]
